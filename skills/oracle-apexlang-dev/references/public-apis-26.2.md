@@ -16,7 +16,7 @@ select overload, argument_name, position, data_type, in_out, defaulted
  order by overload, sequence;
 ```
 
-Resolve synonym chains if present. Check the installed public specification when dictionary access is limited; do not substitute an undocumented internal call.
+Resolve synonym chains if present. Check the installed public specification when dictionary access is limited. If no suitable public operation exists, investigate the [internal API contract](apex-internal-apis.md) before requesting UI access; an internal call is not a public API substitute without that review.
 
 ## Application operations
 
@@ -49,6 +49,6 @@ Resolve synonym chains if present. Check the installed public specification when
 
 ## Fallback order
 
-Use matching APEXlang for represented source; a documented public API for supported operations; Builder/SQL Developer UI for the remaining supported actions. Preserve the source by re-exporting after an authorized UI/API change. Do not silently return to hand-written `WWV_FLOW_*` metadata scripts. If a legacy project still requires one, treat it as an explicitly reviewed exception with exact-version export evidence, recovery and runtime proof; see [internal API caution](apex-internal-apis.md).
+Use matching APEXlang for represented source, then a documented public API, then a verified internal API within the authorized project policy. Investigate these programmatic routes before requesting Builder/SQL Developer UI access. Internal APIs remain version-specific implementation details: follow the [internal API contract](apex-internal-apis.md), preserve recovery, and re-export after an authorized change. Request UI access only for the concrete operation still blocked; do not confuse lack of public documentation with proof that no safe programmatic route exists.
 
 Prior 26.1 capabilities are indexed in [the inherited API reference](apex-26-1-public-apis.md); recheck signatures on 26.2. `APEX_LANG` translation APIs are not the APEXlang source language. Complete package discovery: [API contents](https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/toc.htm) and [APEX Diff](https://oracleapex.com/apexdiff).

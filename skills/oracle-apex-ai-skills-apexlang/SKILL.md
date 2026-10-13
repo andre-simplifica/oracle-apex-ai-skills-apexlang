@@ -31,6 +31,7 @@ Start here for this four-skill kit. Minimum and currently reviewed APEX feature 
 ## Operating contract
 
 - APEXlang is editable application source. Read the matching Oracle inventory and real application examples before generating syntax.
+- Resolve authorized work through APEXlang, then documented public APIs, then verified internal APIs within the project's authorized policy. Investigate these programmatic routes before requesting App Builder access; report the concrete remaining blocker when UI access is the last resort. Follow the [API fallback contract](../oracle-apexlang-dev/references/apex-internal-apis.md).
 - Oracle references are pinned by commit and SHA-256. Read [reference policy](../oracle-apexlang-dev/references/oracle-reference-policy.md). Do not execute Oracle's deployment helper unchanged: it enables Supporting Objects and passes a connection string.
 - Prefer Working Copies for application isolation. They still share schema objects. Git, application locks and cooperative database locks cover different resources.
 - Selective file imports are for eligible development/test changes after drift comparison, full-tree validation, dependency review, recovery capture and scoped authorization. Production uses a complete tested application artifact.

@@ -19,7 +19,7 @@ Read the relevant [Oracle inventory](references/oracle-reference-policy.md), pro
 
 Follow [daily workflow](references/daily-workflow.md): local diff → whole-tree compiler validation → CODESCAN triage → fresh drift check → authorized import → functional/security canaries → re-export/reconcile.
 
-Use APEXlang for represented application components, documented public APIs for operational functions, and App Builder for unsupported operations. Consult [public APIs](references/public-apis-26.2.md). Never invent a component-deletion command, Working Copy merge API or internal metadata call.
+Resolve authorized work through APEXlang first, documented public APIs next, and verified internal APIs under the [internal API contract](references/apex-internal-apis.md) before requesting App Builder access. Consult [public APIs](references/public-apis-26.2.md). Builder is the last resort when these routes cannot safely complete the operation; report the concrete capability, privilege or validation blocker. Never invent a component-deletion command, Working Copy merge API or internal metadata call.
 
 Distinguish stable component Static IDs from HTML DOM IDs. Keep generated artifacts and compiler metadata intact. Triage warnings; fix validation errors without deleting components merely to make a check pass.
 
