@@ -42,7 +42,8 @@ Run CODESCAN on the candidate. Separate existing findings from introduced findin
 | Missing files, model mismatch, compiler errors, unresolved drift | Block candidate promotion/import until understood |
 | Legacy Calendar; missing/invalid plugin, template or subscription references | Inspect replacement/refresh options, prepare a targeted repair |
 | Old Universal Theme subscription/custom template deltas | Assess refresh in isolated DEV, compare appearance and interactions |
-| Old Compatibility Mode or Upgrade Application suggestions | Review cumulative behavior changes; select and test changes separately |
+| Old Compatibility Mode | Review cumulative behavior changes and recommend the newest supported mode; when authorized, apply with recovery and application-wide regression canaries using the [compatibility upgrade workflow](../../oracle-apexlang-dev/references/versions-and-upgrades.md#application-compatibility-mode) |
+| Upgrade Application suggestions | Review and authorize component changes separately |
 | OAuth token/scope customization, AI provider migration, custom JS/DOM references | Run focused integration/security/browser regression tests |
 | Warning, optional new styling, new provider capability | Record severity/decision; no automatic feature adoption |
 

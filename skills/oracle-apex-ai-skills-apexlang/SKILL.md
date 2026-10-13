@@ -35,6 +35,7 @@ Start here for this four-skill kit. Minimum and currently reviewed APEX feature 
 - Prefer Working Copies for application isolation. They still share schema objects. Git, application locks and cooperative database locks cover different resources.
 - Selective file imports are for eligible development/test changes after drift comparison, full-tree validation, dependency review, recovery capture and scoped authorization. Production uses a complete tested application artifact.
 - Exporting never implies theme refresh, Compatibility Mode changes, Upgrade Application actions, Supporting Objects execution or AI provider migration.
+- During adoption, assess upgrading Compatibility Mode to the newest value supported by the verified engine. When explicitly authorized, carry out that upgrade with recovery and regression tests; do not preserve an older mode merely because the original task was an export. Follow [compatibility upgrades](../oracle-apexlang-dev/references/versions-and-upgrades.md#application-compatibility-mode).
 - Keep confirmed application patterns in project-owned files. Optional reporting/ECharts companions remain independently installed; core operation does not require them.
 
 ## Closeout

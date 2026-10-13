@@ -31,6 +31,20 @@ The helper validates supplied facts offline. Doctor without versions verifies in
 
 ## First adoption versus source upgrade
 
+### Application Compatibility Mode
+
+Treat engine version, source `mmdVersion` and application Compatibility Mode as separate facts. For adoption, recommend the newest mode supported by the verified engine after reviewing cumulative changed behavior. If the user authorizes the application compatibility upgrade, prepare recovery, apply it through a supported route, and test the affected runtime flows. Retaining an older mode must be an explicit decision with a reason, not an automatic consequence of starting from an export.
+
+The pinned APEX 26.2 inventory defines the newest `runtime.compatibilityMode` value as `26.1`, displayed as **26.1 to 26.2**. Do not set an invented `26.2` token or copy the engine version into this property. Verify the release-matched inventory and Builder options when upgrading to another reviewed release.
+
+This setting affects the whole application. A page-only import does not apply an `application.apx` change. Prefer a documented route for the application setting, or App Builder's Application Definition when available. Do not silently broaden a page-only import into a full import or treat a historical API's existence as current support. If the user explicitly requests an internal-API fallback, verify the installed package, synonym resolution and exact signature, constrain the target and current state, prepare an inverse operation, and check the postcondition and complete re-export. Record that this is a version-specific internal route, not a public API guarantee; do not assume it is portable to another release. If no safe route can be established, report the concrete blocker before requesting Builder access.
+
+Preserve the previous mode and source for reversal; re-export to prove the exact change and run fresh login, navigation, affected components and authorization canaries. Report untested paths separately: setting the mode or passing the compiler is not a guarantee of runtime compatibility.
+
+See [Oracle's application upgrade guide](https://docs.oracle.com/en/database/oracle/apex/26.2/htmdb/upgrading-apex-applications.html) and the pinned `apexlang-inventory/assets/app/app.md` property definition. Theme refresh, authentication changes and database-object changes remain separately scoped.
+
+### Source workflow
+
 If the live application was just upgraded and no canonical APEXlang exists, export it directly and perform [readiness](../../oracle-apexlang-export/references/readiness-and-first-baseline.md). Do not import an old SQL snapshot over its current state.
 
 If Git is already authoritative, prepare a dedicated upgrade branch. Back up both live and uncommitted source; reconcile Builder drift. In an authorized isolated DEV target, import the approved old source with the version's supported upgrade path, re-export under the new engine, validate the complete new structure and test behavior. Keep the structural upgrade in its own commit/PR and rebase downstream work. [Oracle source-upgrade process](https://docs.oracle.com/en/database/oracle/apex/26.2/apxdc/upgrading-apexlang-source-with-new-apex-release.html).
