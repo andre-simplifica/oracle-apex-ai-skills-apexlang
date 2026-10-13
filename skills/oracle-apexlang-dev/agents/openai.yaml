@@ -1,0 +1,7 @@
+interface:
+  display_name: "Oracle APEXlang DEV"
+  short_description: "Edit and validate APEX 26.2 application source"
+  default_prompt: "Use $oracle-apexlang-dev to implement this change through validated APEXlang source and runtime checks."
+
+policy:
+  allow_implicit_invocation: true

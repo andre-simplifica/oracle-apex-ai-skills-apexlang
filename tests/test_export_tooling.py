@@ -1,0 +1,396 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+from typing import Optional
+import unittest
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def run_script(
+    relative: str, *arguments: str, expected_returncode: int = 0
+) -> subprocess.CompletedProcess[str]:
+    completed = subprocess.run(
+        [sys.executable, str(REPO_ROOT / relative), *arguments],
+        cwd=REPO_ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if completed.returncode != expected_returncode:
+        raise AssertionError(
+            f"Unexpected return code {completed.returncode}\n"
+            f"STDOUT:\n{completed.stdout}\nSTDERR:\n{completed.stderr}"
+        )
+    return completed
+
+
+class ExportToolingTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.project = Path(self.temp_dir.name) / "project"
+        self.project.mkdir()
+
+    def tearDown(self) -> None:
+        self.temp_dir.cleanup()
+
+    def initialize_policy(self) -> dict:
+        policy = json.loads(
+            (REPO_ROOT / "templates/export-policy.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        policy_path = self.project / ".oracle-apexlang/export-policy.json"
+        policy_path.parent.mkdir(parents=True)
+        policy_path.write_text(
+            json.dumps(policy, indent=2) + "\n", encoding="utf-8"
+        )
+        return policy
+
+    def initialize_pending(self) -> Path:
+        self.initialize_policy()
+        pending = self.project / "db/migrations/pending"
+        pending.mkdir(parents=True)
+        shutil.copy2(
+            REPO_ROOT / "templates/pending-ddl.sql",
+            pending / "pending_ddl.sql",
+        )
+        shutil.copy2(
+            REPO_ROOT / "templates/pending-dml.sql",
+            pending / "pending_dml.sql",
+        )
+        return pending
+
+    def write_apex_export(
+        self,
+        *,
+        app_id: int = 100,
+        include_readable: bool,
+        quoted_scn: bool = False,
+    ) -> Path:
+        root = self.project / f"apex/app_{app_id}"
+        (root / "application/pages").mkdir(parents=True)
+        if include_readable:
+            (root / "readable/application/pages").mkdir(parents=True)
+        scn = "'1'" if quoted_scn else "1"
+        (root / "install.sql").write_text(
+            "@application/create_application.sql\n", encoding="utf-8"
+        )
+        (root / "application/create_application.sql").write_text(
+            "begin\nwwv_flow_imp.create_flow("
+            f"p_default_application_id=>{app_id},p_version_scn=>{scn});\n"
+            "end;\n/\n",
+            encoding="utf-8",
+        )
+        (root / "application/pages/page_00001.sql").write_text(
+            "begin null; end;\n/\n", encoding="utf-8"
+        )
+        if include_readable:
+            (root / "readable/application/pages/p00001.yaml").write_text(
+                "id: 1\n", encoding="utf-8"
+            )
+        (root / f"f{app_id}.sql").write_text(
+            "begin\nwwv_flow_imp.create_flow("
+            f"p_default_application_id=>{app_id},"
+            "p_flow_status=>'AVAILABLE_W_EDIT_LINK',"
+            f"p_version_scn=>{scn});\nend;\n/\n",
+            encoding="utf-8",
+        )
+        return root
+
+    def test_pending_contract_accepts_two_clean_files(self) -> None:
+        self.initialize_pending()
+        completed = run_script(
+            "scripts/check_pending_migrations.py",
+            "--project-root",
+            str(self.project),
+        )
+        self.assertIn("PENDING_CONTRACT OK files=2", completed.stdout)
+
+    def test_pending_contract_rejects_apex_and_standalone_objects(self) -> None:
+        pending = self.initialize_pending()
+        (pending / "pending_ddl.sql").write_text(
+            "begin\n  wwv_flow_imp_page.create_page(p_id=>1);\nend;\n/\n"
+            "create or replace package pk_wrong as end;\n/\n",
+            encoding="utf-8",
+        )
+        completed = run_script(
+            "scripts/check_pending_migrations.py",
+            "--project-root",
+            str(self.project),
+            expected_returncode=1,
+        )
+        self.assertIn("APEX application/page/component source", completed.stdout)
+        self.assertIn("canonical object export", completed.stdout)
+
+    def write_release_bundle(
+        self, snapshot_id: int, scope: str, base_snapshot_id: Optional[int] = None
+    ) -> Path:
+        directory = self.project / "db/releases/2026-08-22"
+        directory.mkdir(parents=True)
+        groups = (
+            ("01", "package_specs", "PACKAGE", "create or replace package PK_A as end PK_A;\n/"),
+            ("02", "views", "VIEW", "create or replace view VW_A as select 1 n from dual;"),
+            ("03", "package_bodies", "PACKAGE BODY", "create or replace package body PK_A as end PK_A;\n/"),
+            (
+                "04",
+                "triggers",
+                "TRIGGER",
+                "-- NO CHANGES" if scope == "partial" else "-- NO OBJECTS",
+            ),
+            ("05", "compile_objects", "COMPILE", "-- No project-approved compile routine configured."),
+        )
+        for order, group, object_type, body in groups:
+            lines = [
+                "-- ORACLE_APEX_AI_RELEASE",
+                f"-- SNAPSHOT_ID: {snapshot_id}",
+                f"-- SCOPE: {scope.upper()}",
+            ]
+            if base_snapshot_id is not None:
+                lines.append(f"-- BASE_SNAPSHOT_ID: {base_snapshot_id}")
+            lines.extend((f"-- OBJECT_GROUP: {object_type}", body, ""))
+            (directory / f"snapshot_{snapshot_id}_{scope}_{order}_{group}.sql").write_text(
+                "\n".join(lines), encoding="utf-8"
+            )
+        return directory
+
+    def test_release_validator_accepts_full_and_partial_five_file_layout(self) -> None:
+        full = self.write_release_bundle(10, "full")
+        completed = run_script(
+            "scripts/validate_release_bundle.py",
+            "--directory",
+            str(full),
+            "--snapshot-id",
+            "10",
+            "--scope",
+            "full",
+        )
+        self.assertIn("RELEASE_BUNDLE OK scope=FULL snapshot=10 files=5", completed.stdout)
+
+        shutil.rmtree(full)
+        partial = self.write_release_bundle(11, "partial", 10)
+        completed = run_script(
+            "scripts/validate_release_bundle.py",
+            "--directory",
+            str(partial),
+            "--snapshot-id",
+            "11",
+            "--scope",
+            "partial",
+            "--base-snapshot-id",
+            "10",
+        )
+        self.assertIn("RELEASE_BUNDLE OK scope=PARTIAL snapshot=11 files=5", completed.stdout)
+
+    def test_release_validator_ignores_business_error_comments_and_nested_ddl_text(self) -> None:
+        full = self.write_release_bundle(12, "full")
+        specs = full / "snapshot_12_full_01_package_specs.sql"
+        specs.write_text(
+            specs.read_text(encoding="utf-8")
+            + "-- Error code constants\n"
+            + "-- create or replace view VW_NOT_EXPORTED as select 1 from dual;\n",
+            encoding="utf-8",
+        )
+        completed = run_script(
+            "scripts/validate_release_bundle.py",
+            "--directory",
+            str(full),
+            "--snapshot-id",
+            "12",
+            "--scope",
+            "full",
+        )
+        self.assertIn("RELEASE_BUNDLE OK scope=FULL snapshot=12 files=5", completed.stdout)
+
+        specs.write_text(
+            specs.read_text(encoding="utf-8") + "-- ERROR: extraction failed\n",
+            encoding="utf-8",
+        )
+        failed = run_script(
+            "scripts/validate_release_bundle.py",
+            "--directory",
+            str(full),
+            "--snapshot-id",
+            "12",
+            "--scope",
+            "full",
+            expected_returncode=2,
+        )
+        self.assertIn("Extraction error marker", failed.stderr)
+
+    def test_retention_is_report_only_by_default_and_guarded_when_applied(self) -> None:
+        policy = self.initialize_policy()
+        releases = self.project / policy["database_release"]["output_directory"]
+        for day in range(1, 16):
+            (releases / f"2026-08-{day:02d}").mkdir(parents=True)
+
+        completed = run_script(
+            "scripts/manage_export_retention.py",
+            "status",
+            "--project-root",
+            str(self.project),
+        )
+        self.assertIn("RETENTION_DUE YES", completed.stdout)
+        self.assertEqual(completed.stdout.count("CANDIDATE "), 5)
+
+        policy["retention"]["repository_releases"]["mode"] = "prune"
+        (self.project / ".oracle-apexlang/export-policy.json").write_text(
+            json.dumps(policy, indent=2) + "\n", encoding="utf-8"
+        )
+        run_script(
+            "scripts/manage_export_retention.py",
+            "prune",
+            "--project-root",
+            str(self.project),
+            "--apply",
+            "--confirm",
+            "PRUNE_OLD_RELEASES",
+        )
+        self.assertEqual(len(list(releases.iterdir())), 10)
+
+    def test_database_retention_emits_preflight_only_without_confirmation(self) -> None:
+        self.initialize_policy()
+        completed = run_script(
+            "scripts/manage_export_retention.py",
+            "database-sql",
+            "--project-root",
+            str(self.project),
+            "--include-disabled",
+            "--owner",
+            "APP_SCHEMA",
+        )
+        self.assertIn("select count(*) snapshot_count", completed.stdout)
+        self.assertNotIn("begin\n    PK_DDL_SNAPSHOT", completed.stdout)
+        self.assertIn("EMIT_DB_SNAPSHOT_PURGE", completed.stdout)
+
+    def test_apex_validator_checks_26_2_sql_recovery_formats_and_quoted_scn(self) -> None:
+        root = self.write_apex_export(
+            include_readable=False,
+            quoted_scn=True,
+        )
+        completed = run_script(
+            "scripts/validate_apex_export.py",
+            "--root",
+            str(root),
+            "--app-id",
+            "100",
+            "--apex-version",
+            "26.2.3",
+        )
+        self.assertIn(
+            "APEX_COMPATIBILITY OK version=26.2.3 status=SUPPORTED_26_2",
+            completed.stdout,
+        )
+        self.assertIn("APEX_PAGES OK split=1 readable=NOT_REQUIRED", completed.stdout)
+        self.assertIn(
+            "APEX_EXPORT OK atomic_formats=split-sql,monolithic-sql",
+            completed.stdout,
+        )
+
+    def test_apex_validator_rejects_readable_yaml_on_26_2(self) -> None:
+        root = self.write_apex_export(include_readable=True)
+        completed = run_script(
+            "scripts/validate_apex_export.py",
+            "--root",
+            str(root),
+            "--app-id",
+            "100",
+            "--apex-version",
+            "26.2",
+            expected_returncode=2,
+        )
+        self.assertIn("readable/ is forbidden on APEX 26.1+", completed.stderr)
+
+    def test_apex_validator_rejects_apexlang_mixed_into_sql_recovery(self) -> None:
+        root = self.write_apex_export(include_readable=False)
+        (root / "application.apx").write_text("not accepted\n", encoding="utf-8")
+        completed = run_script(
+            "scripts/validate_apex_export.py",
+            "--root",
+            str(root),
+            "--app-id",
+            "100",
+            "--apex-version",
+            "26.2",
+            expected_returncode=2,
+        )
+        self.assertIn("SQL recovery directory must not mix APEXlang artifacts", completed.stderr)
+
+    def test_apex_validator_allows_redacted_bearer_examples(self) -> None:
+        root = self.write_apex_export(include_readable=False)
+        with (root / "application/pages/page_00001.sql").open(
+            "a", encoding="utf-8"
+        ) as handle:
+            handle.write("-- Authorization: Bearer abcdefgh........ijklmnopqrst\n")
+        completed = run_script(
+            "scripts/validate_apex_export.py",
+            "--root",
+            str(root),
+            "--app-id",
+            "100",
+            "--apex-version",
+            "26.2",
+        )
+        self.assertIn("APEX_EXPORT OK", completed.stdout)
+
+    def test_apex_validator_rejects_unredacted_bearer_values(self) -> None:
+        root = self.write_apex_export(include_readable=False)
+        with (root / "application/pages/page_00001.sql").open(
+            "a", encoding="utf-8"
+        ) as handle:
+            handle.write(
+                "-- Authorization: Bearer abcdefghijklmnopqrstuvwxyz012345\n"
+            )
+        completed = run_script(
+            "scripts/validate_apex_export.py",
+            "--root",
+            str(root),
+            "--app-id",
+            "100",
+            "--apex-version",
+            "26.2",
+            expected_returncode=2,
+        )
+        self.assertIn("Potential secret material", completed.stderr)
+
+    def test_apex_validator_rejects_versions_below_26_2(self) -> None:
+        root = self.write_apex_export(include_readable=True)
+        completed = run_script(
+            "scripts/validate_apex_export.py",
+            "--root",
+            str(root),
+            "--app-id",
+            "100",
+            "--apex-version",
+            "23.2",
+            expected_returncode=2,
+        )
+        self.assertIn("not a reviewed release; minimum 26.2", completed.stderr)
+
+    def test_compatibility_validator_enforces_review_and_toolchain(self) -> None:
+        for version in ("24.2", "26.1", "26.3", "27.1"):
+            with self.subTest(version=version):
+                result = run_script("scripts/validate_apex_compatibility.py",
+                                    "--apex-version", version, "--json", expected_returncode=2)
+                self.assertFalse(json.loads(result.stdout)["supported"])
+        result = run_script("scripts/validate_apex_compatibility.py", "--apex-version", "26.2",
+                            "--sqlcl-version", "26.3.0.260.1620", "--ords-version", "26.3",
+                            "--require", "apexlang", "--json")
+        report = json.loads(result.stdout)
+        self.assertTrue(report["supported"])
+        self.assertTrue(report["toolchain"]["complete"])
+        self.assertFalse(report["runtime_verified"])
+        for extra in ([], ["--sqlcl-version", "26.2", "--ords-version", "26.3"],
+                      ["--sqlcl-version", "26.3", "--ords-version", "26.2"]):
+            run_script("scripts/validate_apex_compatibility.py", "--apex-version", "26.2",
+                       "--require", "apexlang", *extra, expected_returncode=2)
+
+
+if __name__ == "__main__":
+    unittest.main()

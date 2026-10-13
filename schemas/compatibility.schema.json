@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/andre-simplifica/oracle-apex-ai-skills-apexlang/schemas/compatibility.schema.json",
+  "title": "Oracle APEX AI Skills APEXlang compatibility record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kit",
+    "apex",
+    "database",
+    "core_skills",
+    "optional_skills",
+    "kit_version",
+    "toolchain"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "kit": {
+      "const": "oracle-apex-ai-skills-apexlang"
+    },
+    "kit_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "apex": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_supported",
+        "reviewed_releases",
+        "runtime_verified_releases",
+        "feature_gates",
+        "apexlang_policy",
+        "official_export_formats",
+        "sql_recovery_formats",
+        "other_versions"
+      ],
+      "properties": {
+        "minimum_supported": {
+          "const": "26.2"
+        },
+        "feature_gates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dynamic_content_return_clob",
+            "apex_26_1_public_apis",
+            "apexlang_product",
+            "apex_26_2_public_apis",
+            "file_level_import"
+          ],
+          "properties": {
+            "dynamic_content_return_clob": {
+              "const": "22.2"
+            },
+            "apex_26_1_public_apis": {
+              "const": "26.1"
+            },
+            "apexlang_product": {
+              "const": "26.1"
+            },
+            "file_level_import": {
+              "const": "26.2"
+            },
+            "apex_26_2_public_apis": {
+              "const": "26.2"
+            }
+          }
+        },
+        "apexlang_policy": {
+          "const": "enabled"
+        },
+        "other_versions": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_releases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "runtime_verified_releases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "official_export_formats": {
+          "const": [
+            "apexlang"
+          ]
+        },
+        "sql_recovery_formats": {
+          "const": [
+            "split-sql",
+            "monolithic-sql"
+          ]
+        }
+      }
+    },
+    "database": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "object_lock_runtime_required",
+        "object_lock_mode"
+      ],
+      "properties": {
+        "object_lock_runtime_required": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "object_lock_mode": {
+          "const": "cooperative"
+        }
+      }
+    },
+    "core_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 4,
+      "uniqueItems": true
+    },
+    "optional_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "optional_companion_repositories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "build-apex-brand-reports",
+        "oracle-apex-echarts"
+      ],
+      "properties": {
+        "build-apex-brand-reports": {
+          "const": "https://github.com/andre-simplifica/oracle-apex-brand-report-kit"
+        },
+        "oracle-apex-echarts": {
+          "const": "https://github.com/andre-simplifica/oracle-apex-echarts"
+        }
+      }
+    },
+    "toolchain": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "required": [
+        "minimum_sqlcl",
+        "minimum_ords"
+      ]
+    }
+  }
+}

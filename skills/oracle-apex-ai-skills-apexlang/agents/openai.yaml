@@ -1,0 +1,7 @@
+interface:
+  display_name: "Oracle APEX AI Skills APEXlang"
+  short_description: "Adopt APEX 26.2 with versioned APEXlang workflows"
+  default_prompt: "Use $oracle-apex-ai-skills-apexlang to assess or develop this APEX 26.2 project with its existing standards."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Oracle APEXlang Baseline"
+  short_description: "Assess readiness and version APEXlang baselines"
+  default_prompt: "Use $oracle-apexlang-export to assess this migrated application and establish its first APEXlang baseline."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "kit": "oracle-apex-ai-skills-apexlang",
+  "kit_version": "0.1.0",
+  "apex": {
+    "minimum_supported": "26.2",
+    "feature_gates": {
+      "dynamic_content_return_clob": "22.2",
+      "apex_26_1_public_apis": "26.1",
+      "apexlang_product": "26.1",
+      "file_level_import": "26.2",
+      "apex_26_2_public_apis": "26.2"
+    },
+    "apexlang_policy": "enabled",
+    "other_versions": "Below 26.2 is unsupported. Unreviewed newer feature releases are blocked until their Oracle inventory, toolchain and migration notes have been reviewed.",
+    "reviewed_releases": [
+      "26.2"
+    ],
+    "runtime_verified_releases": [],
+    "official_export_formats": [
+      "apexlang"
+    ],
+    "sql_recovery_formats": [
+      "split-sql",
+      "monolithic-sql"
+    ]
+  },
+  "database": {
+    "object_lock_runtime_required": "1.1.0",
+    "object_lock_mode": "cooperative"
+  },
+  "core_skills": [
+    "oracle-apex-ai-skills-apexlang",
+    "oracle-apexlang-dev",
+    "oracle-apexlang-export",
+    "oracle-apexlang-object-lock"
+  ],
+  "optional_skills": [
+    "build-apex-brand-reports",
+    "oracle-apex-echarts"
+  ],
+  "optional_companion_repositories": {
+    "build-apex-brand-reports": "https://github.com/andre-simplifica/oracle-apex-brand-report-kit",
+    "oracle-apex-echarts": "https://github.com/andre-simplifica/oracle-apex-echarts"
+  },
+  "toolchain": {
+    "minimum_sqlcl": "26.3",
+    "minimum_ords": "26.3",
+    "minimum_database_19c_ru": "19.18",
+    "minimum_database_26ai_version": "23.26.0"
+  }
+}

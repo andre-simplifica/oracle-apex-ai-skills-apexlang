@@ -1,0 +1,256 @@
+{
+  "reviewed_on": "2026-10-12",
+  "apex_release": "26.2",
+  "sqlcl_build_tested": "26.3.0.260.1620",
+  "oracle_skills_commit": "014cdb29f12dfa6a689bbe8a80ee1c5f0bf15be1",
+  "sources": [
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/about-release-notes.html",
+      "retrieved_body_sha256": "132b108e5a001535036857965bccc221e79b5f9236d11d90262865e656d31a61",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/changed-behavior.html",
+      "retrieved_body_sha256": "2fd2bf05f6654a01dbb5da221a08d141f070c1fa5a76acb11e110403129ea5f8",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/deprecated-features.html",
+      "retrieved_body_sha256": "24789abce3c7ef4f35be5f7aa97887db1759e942582898b4c9907e4ffe6bf4cd",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/deprecated-previous-releases.html",
+      "retrieved_body_sha256": "e3c61be1adf27330a334f21c5d6281d40518914eee45d327c22323cb83a8619f",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/desupported-features.html",
+      "retrieved_body_sha256": "ae10ef98bbc0a33357fd0b191280bd72b28fdb2a845bba767e43c72a48c10d39",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/desupported-previous-releases.html",
+      "retrieved_body_sha256": "f3122a70d752371f3116e72e65acb858ec07d2e05c745ab9e59716eceb8da696",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/fixed-bugs.html",
+      "retrieved_body_sha256": "9c7de8862c61b19885b5587958e9ba842c4d6d61ff4214639b6fb150293ec5dc",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/ideas-app.html",
+      "retrieved_body_sha256": "643a80272fbc0dc22a00809d03bfe3ef19b1b80ec95e5fa76a80f4a2e3e975a7",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/index.html",
+      "retrieved_body_sha256": "367dd96a17b7dc67ca163c7845806b202c368deec518cf98104ad605eb219d1c",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/new-features.html",
+      "retrieved_body_sha256": "2c3467ef652529d4cad77e95adf7ca1c1f4d67b721eb7075b62d5eaf6eeb830f",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/open-bugs-known-issues.html",
+      "retrieved_body_sha256": "b1003e571c7d196a655f0040cefed088e2b5782cc889208d7d986b57623252c1",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/preface.html",
+      "retrieved_body_sha256": "472c77cbf5282cf2ede0ccb98f80715d81481618b14d2ee5a21954bfd83248c8",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/privacy-notice.html",
+      "retrieved_body_sha256": "c1d5048f0aa99fcae3d30064a5b7802fa06114b19b2341079d80f41a5cb7beae",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/toc.htm",
+      "retrieved_body_sha256": "b831b613ee1ea6ee5211771562c1f51ed2264922c0e8bde49fb53d216f8b951d",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmdb/upgrading-apex-applications.html",
+      "retrieved_body_sha256": "3c05fe7fb124474931616e7d069daae679f1f1f194e0eac8b2fdec942e52b194",
+      "text_extracted": true
+    },
+    {
+      "url": "https://www.oracle.com/tools/downloads/apex-downloads/apex-262-known-issues/",
+      "retrieved_body_sha256": "d3844f2d8a998aafe7d08ef54baac2a9834368e1fcb0973641b7d55ef39d7fcf",
+      "text_extracted": false
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.1/htmrn/changed-behavior.html",
+      "retrieved_body_sha256": "1b6481bcd33ee3d53aa0f1fef6bf977fa1fbe6b3365b84778a5a7e5f91f21bb6",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/apxdc/working-apexlang.html",
+      "retrieved_body_sha256": "e019b4f0ee13618a8881fe38a480b370e1a6bbbdb5921b2171a84d75cbbab702",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/apxdc/understanding-apexlang-deployment-files.html",
+      "retrieved_body_sha256": "d2eb57b9c766ed072c4ec878c8f9971021edba493305a0ed47e9f19bc02c8f75",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/apxdc/upgrading-apexlang-source-with-new-apex-release.html",
+      "retrieved_body_sha256": "fa4a8a03316c5b1659a46da7b7757d02ec53c1d01afb3fc7fa072fec8f7d783e",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/htmdb/creating-an-application-with-APEXlang.html",
+      "retrieved_body_sha256": "d27616338ab6efd1bf1d8694a113f989e3d254fdb7fa766ad54525dcba572fb0",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/GET_APPLICATION_Function.html",
+      "retrieved_body_sha256": "68b94cf3655efb41b2593f35c7c0d11c5992dad764a3b366ea3636762cd467d7",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_AI.CHAT-Function-Signature-1.html",
+      "retrieved_body_sha256": "e6518d866147de110b1e2bdb7ee0cf2788d5a9b4a54bbc835a1395270ab25d9d",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_AI.CHAT-Function-Signature-2.html",
+      "retrieved_body_sha256": "6bd627f1d2be0b2fdbb6b857688d6afdb7e457754394afe7e825e805f5f725e3",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_AI.CHAT-Function-Signature-3.html",
+      "retrieved_body_sha256": "2477891d809b24370a3e460373984fe7501686659da2c51a1d1b0a4d40973f2c",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_AI.GENERATE-Function-Signature-1.html",
+      "retrieved_body_sha256": "8c1f730c82c6282607d42ee9e47cc1977fead88998d8fda4f80ff5df1232e8d1",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_AI.GENERATE-Function-Signature-2.html",
+      "retrieved_body_sha256": "f5466ed3bb6e4104bf38bf1c952cc927309fe487f5ab258b788b7d09f18253e8",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_AI.GENERATE-Function-Signature-3.html",
+      "retrieved_body_sha256": "2e99b154f8887133dbec7664c807de0a0f5d8f87886de0641a32754ad18e761c",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.CREATE_WORKING_COPY-Function.html",
+      "retrieved_body_sha256": "4e3463acbbf5afb839cb24d72c09856952ec4fff5c18f5b6ddd9c062b8f07a68",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.DEEP_SEC_IS_ENABLED-Function.html",
+      "retrieved_body_sha256": "6453b9b3f30c04dd5018ef3511659f9d1904cdd4e4caba481d66f251e3b3b42a",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.DEINSTALL_SUPPORTING_OBJECTS-Procedure.html",
+      "retrieved_body_sha256": "809cc57c510e0c41b1fdad2d74d821c0886825cd43eec474cacb6a04138f39b8",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.GET_DEEP_SEC_APPLICATION_SCOPE-Function.html",
+      "retrieved_body_sha256": "5de1be2dbe5ec120769ce6375a0cc732cbbdd81db45a0e306974dc90b74e7f51",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.GET_DEEP_SEC_DB_RESOURCE_SCOPE-Function.html",
+      "retrieved_body_sha256": "742d2cbee895ebf42083bda43eb25183afbc0566f9689de15941d8be3f1ebf2e",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.GET_SUPPORTING_OBJECTS_ERRORS-Function.html",
+      "retrieved_body_sha256": "a868a5a20b2ffe3a70b2de68a261e3fdf7cb2b7764cf19d7275b369259efcf81",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.INSTALL_SUPPORTING_OBJECTS-Procedure.html",
+      "retrieved_body_sha256": "3cea17def56865a0e5773f696fc4924b9f4dd25d4ee27a00ff74b7f9646d85bb",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.LOCK_APPLICATION-Procedure.html",
+      "retrieved_body_sha256": "996cd7bc58711034ef38a87de35fce0dad1f37493cad9610fa1973c1f6001a4d",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.SET_DEEP_SEC-Procedure.html",
+      "retrieved_body_sha256": "9fe5332f51c1140fd4536e9809d771760ed23e6a43e1315403510c701efdf534",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.UNLOCK_APPLICATION-Procedure.html",
+      "retrieved_body_sha256": "0a69b23c4a7467a13bcb80005949586e9525eb0720d33676cdef53a4eeaea7ed",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_INSTALL.DEEP_SEC_IS_ENABLED-Function.html",
+      "retrieved_body_sha256": "b2530f2c4a99aa250c5f2d4be5afb3e67ef5414763536059222938b5ffc5606d",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_INSTALL.GET_DEEP_SEC_APPLICATION_SCOPE-Function.html",
+      "retrieved_body_sha256": "fed537a791b27a18a0346ba0551e6253d8104c67561f5ca04cb4aa22c6d39795",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_INSTALL.GET_DEEP_SEC_DB_RESOURCE_SCOPE-Function.html",
+      "retrieved_body_sha256": "abf1a8b83a505306349dc0bf14565daef3d3b4f51fd71f022cd41cec254db0b6",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_INSTALL.SET_DEEP_SEC-Procedure.html",
+      "retrieved_body_sha256": "c8761ed158b8e70c599fa120f1fc4b91143aabdfb85eef23d4582f593dad78a5",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_AUTHENTICATION.GROUPS_FROM_TOKEN-Function.html",
+      "retrieved_body_sha256": "c3968946494c00dabf9b5e4429d083876cce9e7c6f5605104a2ce0d32d1da365",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_EXEC.RESUME_DEEP_SEC-Procedure.html",
+      "retrieved_body_sha256": "15586c6ed240ecd2ff8778984bcc1cd7f7624be10a8a0e2b4031f1da57aaa987",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_EXEC.SUSPEND_DEEP_SEC-Procedure.html",
+      "retrieved_body_sha256": "240c2ba7ae73275f8ddb250eb4b6d3013d3136115b6668bb9b5725e937fef27c",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_HUMAN_TASK.SET_TASK_OUTCOME-Procedure.html",
+      "retrieved_body_sha256": "5f81bc380f1722ddd33e2e179b6f9b8eeb2b44794ebba760c9c62cc5b5c5e9bb",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_SESSION.ENABLE_DEEP_SEC_DATA_ROLES-Procedure.html",
+      "retrieved_body_sha256": "000d548ecdddad609f8abfd098a127fcd2d698a0c2770d8178d9cec8c6a34186",
+      "text_extracted": true
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_WORKFLOW.MIGRATE_INSTANCE-Procedure.html",
+      "retrieved_body_sha256": "7682b587d63a1168f5a42705b8d34210ac2e98b9efaa406713a08cc6c6968042",
+      "text_extracted": true
+    }
+  ],
+  "additional_reviewed_urls": [
+    "https://www.oracle.com/apex/whats-new/",
+    "https://blogs.oracle.com/apex/introducing-file-level-import-with-apexlang-in-oracle-apex",
+    "https://blogs.oracle.com/apex/working-with-generative-ai-provider-apis-and-reasoning-effort",
+    "https://blogs.oracle.com/apex/whats-new-in-interactive-reports-and-ai-interactive-reports",
+    "https://www.oracle.com/tools/sqlcl/sqlcl-changelog.html",
+    "https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/download/"
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Oracle APEXlang Object Lock"
+  short_description: "Coordinate shared DEV database object changes"
+  default_prompt: "Use $oracle-apexlang-object-lock to coordinate the shared DEV database objects required by this task."
+
+policy:
+  allow_implicit_invocation: true
