@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Fixed object-lock compilation by evaluating private byte-truncation helpers in PL/SQL before SQL DML.
+- Accepted Oracle's UTC expression for the expiry timestamp index in audit and strict validation, preserving runtime API version 1.1.0.
+
 ## 0.1.0 - 2026-10-12
 
 Initial separate APEXlang kit, derived from the MIT-licensed Oracle APEX AI Skills at `e105a7ca1271cb5a218ad363099537e0a4eb720e` without modifying that project.
