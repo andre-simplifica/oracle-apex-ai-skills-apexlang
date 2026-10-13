@@ -29,6 +29,10 @@ Resolve synonym chains if present. Check the installed public specification when
 | `DEINSTALL_SUPPORTING_OBJECTS` | Destructive operation; inspect deinstallation scripts and data impact, obtain the exact authorized scope and recovery plan. [Reference](https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.DEINSTALL_SUPPORTING_OBJECTS-Procedure.html) |
 | `APEX_EXPORT.GET_APPLICATION` | Use `p_type => 'APEXLANG'` for source or `'SQL'` for recovery; check `p_with_supporting_objects`, translations and runtime/private options. Handle returned file BLOB content as documented. [Signature](https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/GET_APPLICATION_Function.html) |
 
+## Themes
+
+`APEX_SHARED_COMPONENT.REFRESH(p_component_type, p_component_id)` accepts `c_theme` on the reviewed release. Pass the application theme component ID, not theme number 42 or the upstream reference ID. `APEX_THEME.SET_CURRENT_STYLE(p_application_id, p_theme_number, p_id)` persists the selected style; resolve its ID from live metadata. See [theme upgrades](theme-upgrades.md) for prerequisites, guards, recovery and Browser acceptance.
+
 ## Security
 
 - `APEX_APPLICATION_ADMIN` and `APEX_APPLICATION_INSTALL` expose `SET_DEEP_SEC`, `DEEP_SEC_IS_ENABLED`, `GET_DEEP_SEC_DB_RESOURCE_SCOPE`, `GET_DEEP_SEC_APPLICATION_SCOPE`. With `p_enabled => true`, both scopes are required; disabling requires null scopes. Installation null behavior can inherit exported settings. Verify DB26ai capability and database policy before changing them. [Application settings](https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_ADMIN.SET_DEEP_SEC-Procedure.html), [installation](https://docs.oracle.com/en/database/oracle/apex/26.2/aeapi/APEX_APPLICATION_INSTALL.SET_DEEP_SEC-Procedure.html).

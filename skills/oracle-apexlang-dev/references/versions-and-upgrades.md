@@ -29,6 +29,10 @@ python3 Util/apexlang/validate_oracle_apex_compatibility.py \
 
 The helper validates supplied facts offline. Doctor without versions verifies installed files only; it never connects or proves runtime readiness.
 
+## Complete application upgrade scope
+
+An application upgrade includes engine/source compatibility assessment, Compatibility Mode, Universal Theme refresh and intended style adoption. For APEX 26.2, assess UT 26.2 and Iris explicitly; carry out authorized changes with recovery and browser canaries. Inspect custom branding and ask when intent or target authority is unclear. Follow [theme upgrades](theme-upgrades.md). An export-only task remains read-only.
+
 ## First adoption versus source upgrade
 
 ### Application Compatibility Mode
@@ -41,7 +45,7 @@ This setting affects the whole application. A page-only import does not apply an
 
 Preserve the previous mode and source for reversal; re-export to prove the exact change and run fresh login, navigation, affected components and authorization canaries. Report untested paths separately: setting the mode or passing the compiler is not a guarantee of runtime compatibility.
 
-See [Oracle's application upgrade guide](https://docs.oracle.com/en/database/oracle/apex/26.2/htmdb/upgrading-apex-applications.html) and the pinned `apexlang-inventory/assets/app/app.md` property definition. Theme refresh, authentication changes and database-object changes remain separately scoped.
+See [Oracle's application upgrade guide](https://docs.oracle.com/en/database/oracle/apex/26.2/htmdb/upgrading-apex-applications.html) and the pinned `apexlang-inventory/assets/app/app.md` property definition. Theme/style upgrades are part of the full application-upgrade workflow above; authentication and database-object changes still require their own scope.
 
 ### Source workflow
 

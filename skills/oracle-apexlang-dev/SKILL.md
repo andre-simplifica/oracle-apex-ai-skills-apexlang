@@ -28,7 +28,7 @@ Distinguish stable component Static IDs from HTML DOM IDs. Keep generated artifa
 | Task | Read |
 | --- | --- |
 | Syntax, themes, examples | [Oracle references](references/oracle-reference-policy.md) |
-| Versions and upgrades | [Versions](references/versions-and-upgrades.md) |
+| Versions and upgrades | [Versions](references/versions-and-upgrades.md), [theme refresh and Iris](references/theme-upgrades.md) |
 | SQLcl/CODESCAN/Projects/MCP | [SQLcl 26.3](references/sqlcl-26.3.md), [execution](references/sqlcl.md) |
 | New features and migration risks | [26.2 changes](references/release-notes-26.2.md) |
 | Operations outside the language | [Public APIs](references/public-apis-26.2.md) |

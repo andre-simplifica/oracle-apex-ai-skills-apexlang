@@ -47,7 +47,7 @@ Run CODESCAN on the candidate. Separate existing findings from introduced findin
 | OAuth token/scope customization, AI provider migration, custom JS/DOM references | Run focused integration/security/browser regression tests |
 | Warning, optional new styling, new provider capability | Record severity/decision; no automatic feature adoption |
 
-A theme refresh is recommended maintenance, not proof of readiness nor a universal prerequisite to export. Oracle supports UT 26.2/26.1 in this release. Do not replace a custom theme or force Iris. Review Upgrade Application suggestions individually and keep theme/style/Compatibility Mode changes separate from the first export. [Application upgrade guide](https://docs.oracle.com/en/database/oracle/apex/26.2/htmdb/upgrading-apex-applications.html), [prerequisites](https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/about-release-notes.html).
+A theme refresh is not proof of readiness nor a prerequisite to a read-only export. A full application upgrade does include theme refresh and intended style adoption: assess UT 26.2 and Iris and execute within the authorized scope. Preserve custom branding and clarify uncertainty instead of silently skipping this step or replacing a custom theme. Follow [theme upgrades](../../oracle-apexlang-dev/references/theme-upgrades.md). Review Upgrade Application suggestions individually and capture the initial recovery/export before theme/style/Compatibility Mode mutations. [Application upgrade guide](https://docs.oracle.com/en/database/oracle/apex/26.2/htmdb/upgrading-apex-applications.html), [prerequisites](https://docs.oracle.com/en/database/oracle/apex/26.2/htmrn/about-release-notes.html).
 
 ## 4. Establish source and prove the development loop
 
