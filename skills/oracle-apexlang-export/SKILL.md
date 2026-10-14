@@ -15,7 +15,7 @@ Use for a newly migrated application, explicit APEXlang export/versioning, or an
 - `initial-baseline`: explicitly requested complete application and schema structural DDL.
 - `release`: complete application plus the requested full/partial five-file database bundle and pending DDL/DML.
 
-Start with [readiness and first baseline](references/readiness-and-first-baseline.md). Read [deployment and recovery](references/deployment-and-recovery.md) before importing. Follow [version upgrades](../oracle-apexlang-dev/references/versions-and-upgrades.md) for a new language release.
+Start with [readiness and first baseline](references/readiness-and-first-baseline.md). For a migrated legacy application, also follow the [configuration review and scope choice](../oracle-apexlang-dev/references/application-migration-review.md); an export never authorizes the proposed adjustments. Read [deployment and recovery](references/deployment-and-recovery.md) before importing. Follow [version upgrades](../oracle-apexlang-dev/references/versions-and-upgrades.md) for a new language release.
 
 ## Source contract
 

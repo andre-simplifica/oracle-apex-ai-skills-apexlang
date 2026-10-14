@@ -23,6 +23,7 @@ A file installation can run without a database. Connected work requires verified
 - Four coordinated skills: routing/install, APEXlang development, baseline/release and cooperative database-object locks.
 - The complete Oracle-maintained APEXlang 26.2 reference set, pinned at commit `014cdb29f12dfa6a689bbe8a80ee1c5f0bf15be1`, with SHA-256 inventory and UPL license.
 - First-adoption checks for theme/subscriptions, Compatibility Mode, legacy metadata, translations, Supporting Objects, integrations and security.
+- [Legacy migration configuration review](skills/oracle-apexlang-dev/references/application-migration-review.md): Application Definition, Shared Components, PWA, themes/assets, substitutions, Component Settings and New Features, with an explicit review/automatic-adjustment scope choice when not already authorized.
 - SQLcl offline validation, explicit import plans, whole-tree drift detection and deployment identity checks. Plans never execute imports.
 - Version-specific API guidance, release-note coverage and SQLcl 26.3 practices, including CODESCAN.
 - A manifest-aware project installer/updater preserving local profiles, patterns, migrations and the previous kit.

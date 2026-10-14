@@ -10,6 +10,8 @@ Status: NOT_ASSESSED. This template is project-owned and is not runtime evidence
 - Page/component/assets inventory reconciliation:
 - Translations, subscriptions, plugins, Supporting Objects and external dependencies:
 - Theme/Compatibility Mode/Upgrade Application decisions:
+- Configuration review mode and target: review-and-apply / review-only / requested migration only; prior authorization or explicit choice:
+- Definition/security/UI/PWA/themes/substitutions/Component Settings/New Features findings, applied/preserved/deferred actions and validation:
 - Compiler result and private log:
 - CODESCAN findings, severity, accepted exceptions:
 - Remaining blockers/remediation owners:

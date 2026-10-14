@@ -35,6 +35,8 @@ Peça a avaliação e o primeiro baseline APEXlang completo. O agente deverá co
 
 Refresh de tema, Compatibility Mode, Upgrade Application e correções de metadados são avaliados conforme a aplicação. A exportação não autoriza executar essas mudanças. O primeiro commit do baseline fica separado das alterações de comportamento.
 
+Na migração de aplicações antigas, a skill também avalia a configuração geral: Application Definition, segurança, interface/PWA, temas/assets, substitutions, Component Settings e New Features. Quando o escopo ainda não estiver decidido, pergunta se o usuário quer revisão com ajustes automáticos, somente revisão ou apenas a migração solicitada. Se já houver autorização, segue sem perguntar novamente. Veja o [roteiro reutilizável](skills/oracle-apexlang-dev/references/application-migration-review.md).
+
 Os estados são explícitos:
 
 - `EXPORTED_NOT_VALIDATED`: exportado, com validação incompleta ou falha.

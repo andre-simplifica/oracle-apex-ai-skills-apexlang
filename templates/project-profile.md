@@ -59,6 +59,8 @@ Fill it with the real standards of your application.
 - When to ask for authorization before changing the database:
 - How to publish Git changes:
 - Operations that require explicit export/publication authorization:
+- Migration configuration review: agreed mode/target, authorized automatic adjustments and deferred scope:
+- Project-owned migration-review record/checklist:
 
 ## Oracle APEX AI Skills APEXlang Installation
 

@@ -21,6 +21,8 @@ These examples explicitly omit Supporting Objects. Decide the application-specif
 
 Retain the complete original recovery privately, including any necessary sensitive configuration. Public Git source must exclude secrets, salts, customer/runtime data and private deployment identities. Review binary static files as well as text. Record required externally provisioned credentials, ACL users, subscriptions, remote servers and data; application source is not a database/data backup. Preserve the export-generated app alias directory; do not assume it is `f<id>`.
 
+For a legacy migration or first adoption, assess Application Definition and Shared Components using the [application configuration review](../../oracle-apexlang-dev/references/application-migration-review.md). Prepare observed findings and offer the full review with automatic adjustments when that scope has not been chosen. If already authorized, do not ask again; if declined, preserve the requested export/migration scope and record deferred findings.
+
 ## 2. Inspect and diagnose without changing the app
 
 ```bash
@@ -43,7 +45,7 @@ Run CODESCAN on the candidate. Separate existing findings from introduced findin
 | Legacy Calendar; missing/invalid plugin, template or subscription references | Inspect replacement/refresh options, prepare a targeted repair |
 | Old Universal Theme subscription/custom template deltas | Assess refresh in isolated DEV, compare appearance and interactions |
 | Old Compatibility Mode | Review cumulative behavior changes and recommend the newest supported mode; when authorized, apply with recovery and application-wide regression canaries using the [compatibility upgrade workflow](../../oracle-apexlang-dev/references/versions-and-upgrades.md#application-compatibility-mode) |
-| Upgrade Application suggestions | Review and authorize component changes separately |
+| Upgrade Application suggestions | Review each category within the agreed configuration-review scope; preserve/defer unsupported or business-sensitive changes with a reason |
 | OAuth token/scope customization, AI provider migration, custom JS/DOM references | Run focused integration/security/browser regression tests |
 | Warning, optional new styling, new provider capability | Record severity/decision; no automatic feature adoption |
 

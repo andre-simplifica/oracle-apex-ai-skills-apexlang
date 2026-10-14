@@ -2,6 +2,8 @@
 
 A request to upgrade an application includes assessing and, within the authorized target and scope, refreshing Universal Theme and adopting the intended current style. Do not stop at the engine, Compatibility Mode or APEXlang export. For a full upgrade to APEX 26.2, include UT 26.2 and Iris in the proposed scope. If branding, custom templates, style choice or production authority is unclear, inspect first and ask a focused question. An export-only request or a focused page fix does not implicitly authorize a theme migration.
 
+A theme migration also needs the [application configuration review](application-migration-review.md): inspect definition/security/UI, substitutions, themes/assets, Component Settings and New Features. Offer the full review and automatic adjustments if not already decided; carry out only the agreed scope.
+
 ## Preflight and recovery
 
 1. Verify connection, schema/service, workspace, application, installed release, theme number, **theme component ID**, subscription master/status, current style and static ID. Theme number 42, the application's theme component ID and the upstream reference ID are different identifiers.

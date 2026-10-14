@@ -1,6 +1,6 @@
 ---
 name: oracle-apex-ai-skills-apexlang
-description: Adopt and develop Oracle APEX 26.2 applications with versioned APEXlang source, readiness checks, pinned Oracle references, project standards, and controlled SQLcl workflows. Use for this separate APEXlang kit, not the APEX 24.2 SQL-only kit.
+description: Adopt and develop Oracle APEX 26.2 applications with versioned APEXlang source, migration configuration reviews, readiness checks, pinned Oracle references, project standards, and controlled SQLcl workflows. Use for this separate APEXlang kit, not the APEX 24.2 SQL-only kit.
 ---
 
 # Oracle APEX AI Skills APEXlang
@@ -21,6 +21,7 @@ Start here for this four-skill kit. Minimum and currently reviewed APEX feature 
 | --- | --- |
 | Install/update/check this kit | [Installation](references/installation-and-updates.md) |
 | Newly migrated application; first APEXlang baseline | `oracle-apexlang-export`, [readiness](../oracle-apexlang-export/references/readiness-and-first-baseline.md) |
+| Legacy migration, theme change, full configuration review | `oracle-apexlang-dev`, [migration review](../oracle-apexlang-dev/references/application-migration-review.md) |
 | Edit `.apx`, add a page, fix a flow | `oracle-apexlang-dev`, [daily workflow](../oracle-apexlang-dev/references/daily-workflow.md) |
 | SQL, PL/SQL, REST, security, debugging | `oracle-apexlang-dev` and its focused reference |
 | Shared DEV database objects | `oracle-apexlang-object-lock` before compilation |
@@ -36,6 +37,7 @@ Start here for this four-skill kit. Minimum and currently reviewed APEX feature 
 - Prefer Working Copies for application isolation. They still share schema objects. Git, application locks and cooperative database locks cover different resources.
 - Selective file imports are for eligible development/test changes after drift comparison, full-tree validation, dependency review, recovery capture and scoped authorization. Production uses a complete tested application artifact.
 - A full application-upgrade request includes assessing theme refresh and current-style adoption; execute within the authorized target/scope and clarify custom-branding or style uncertainty. Follow [theme upgrades](../oracle-apexlang-dev/references/theme-upgrades.md).
+- For legacy migrations, upgrades and first adoption, follow the [application configuration review](../oracle-apexlang-dev/references/application-migration-review.md). Inspect the whole application and offer review/automatic adjustments when that scope is undecided; proceed without repeating the question when already authorized. Record deferred findings when the user chooses migration only.
 - Exporting alone never implies theme refresh, Compatibility Mode changes, Upgrade Application actions, Supporting Objects execution or AI provider migration.
 - During adoption, assess upgrading Compatibility Mode to the newest value supported by the verified engine. When explicitly authorized, carry out that upgrade with recovery and regression tests; do not preserve an older mode merely because the original task was an export. Follow [compatibility upgrades](../oracle-apexlang-dev/references/versions-and-upgrades.md#application-compatibility-mode).
 - Keep confirmed application patterns in project-owned files. Optional reporting/ECharts companions remain independently installed; core operation does not require them.

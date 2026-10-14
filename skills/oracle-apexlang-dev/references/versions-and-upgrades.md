@@ -31,7 +31,7 @@ The helper validates supplied facts offline. Doctor without versions verifies in
 
 ## Complete application upgrade scope
 
-An application upgrade includes engine/source compatibility assessment, Compatibility Mode, Universal Theme refresh and intended style adoption. For APEX 26.2, assess UT 26.2 and Iris explicitly; carry out authorized changes with recovery and browser canaries. Inspect custom branding and ask when intent or target authority is unclear. Follow [theme upgrades](theme-upgrades.md). An export-only task remains read-only.
+An application upgrade includes engine/source compatibility assessment, Compatibility Mode, Universal Theme refresh and intended style adoption. For APEX 26.2, assess UT 26.2 and Iris explicitly; carry out authorized changes with recovery and browser canaries. Inspect custom branding and ask when intent or target authority is unclear. Follow [theme upgrades](theme-upgrades.md) and the [application configuration review](application-migration-review.md). Offer review and automatic adjustments when that additional scope is undecided, and preserve earlier authorization or opt-out. An export-only task remains read-only.
 
 ## First adoption versus source upgrade
 
