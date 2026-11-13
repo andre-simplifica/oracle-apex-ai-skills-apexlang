@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Added structured SQLcl compiler diagnostics and full-tree/deployment validation evidence.
+- Added ranked, paginated Oracle 26.2 reference search with Portuguese aliases and five compiler-validated example patterns, preserving upstream files and licenses.
+- Added offline import-plan verification with a 30-minute lifetime, source/configuration/scope checks, current SQLcl build verification and explicit live-identity/authorization limits.
+- Included example catalog/evidence integrity checks in managed project installation. Search now defaults to five ranked matches; callers needing all results must paginate with `next_offset`.
 - Fixed object-lock compilation by evaluating private byte-truncation helpers in PL/SQL before SQL DML.
 - Accepted Oracle's UTC expression for the expiry timestamp index in audit and strict validation, preserving runtime API version 1.1.0.
 

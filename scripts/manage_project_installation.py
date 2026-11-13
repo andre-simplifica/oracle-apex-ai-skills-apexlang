@@ -137,6 +137,8 @@ def validate_source(source_root: Path) -> None:
         Path("templates/readiness-report.md"),
         Path("scripts/apexlang_tools.py"),
         Path("scripts/oracle_reference.py"),
+        Path("skills/oracle-apexlang-dev/references/example-catalog.json"),
+        Path("skills/oracle-apexlang-dev/references/example-validation.json"),
     ):
         absolute = source_root / required_path
         if absolute.is_symlink():
@@ -150,10 +152,12 @@ def validate_source(source_root: Path) -> None:
             + ", ".join(missing)
         )
 
-    from oracle_reference import verify_vendor
+    from oracle_reference import verify_vendor, verify_catalog
     try:
         verify_vendor(source_root / "vendor/oracle-skills")
-    except (ValueError, OSError) as exc:
+        verify_catalog(source_root / "vendor/oracle-skills",
+                       source_root / "skills/oracle-apexlang-dev/references/example-catalog.json")
+    except (ValueError, OSError, KeyError, TypeError, AttributeError) as exc:
         raise InstallationError(str(exc)) from exc
     compatibility = read_json(source_root / "templates/compatibility.json")
     kit_version = (source_root / "VERSION").read_text(encoding="utf-8").strip()

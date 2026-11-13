@@ -108,7 +108,28 @@ class ProjectInstallationTests(unittest.TestCase):
                                  "verify"], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(result.stdout)["status"], "PINNED_FILES_VERIFIED")
+        self.assertEqual(json.loads(result.stdout)["catalog"]["examples"], 5)
+        reference_tool = self.project / "Util/apexlang/oracle_reference.py"
+        found = subprocess.run([sys.executable, str(reference_tool), "search", "--query",
+                                "relatório formulário modal", "--kind", "example"], capture_output=True, text=True)
+        self.assertEqual(found.returncode, 0, found.stderr)
+        identifier = json.loads(found.stdout)["matches"][0]["id"]
+        example = subprocess.run([sys.executable, str(reference_tool), "read", "--id", identifier,
+                                  "--max-chars", "100"], capture_output=True, text=True)
+        self.assertEqual(example.returncode, 0, example.stderr)
+        self.assertTrue(json.loads(example.stdout)["dependencies"])
+        self.assertFalse(json.loads(example.stdout)["runtime_verified"])
         self.assertTrue((self.project / ".oracle-apexlang/readiness.md").is_file())
+
+    def test_invalid_example_evidence_blocks_install_before_writing(self) -> None:
+        path = self.source / "skills/oracle-apexlang-dev/references/example-validation.json"
+        record = json.loads(path.read_text())
+        record["applications"]["example-1"]["compiler_validated"] = False
+        path.write_text(json.dumps(record))
+        result = run_manager("install", "--project-root", str(self.project),
+                             *self.source_arguments(), expected_returncode=2)
+        self.assertIn("evidence", result.stderr)
+        self.assertEqual(list(self.project.iterdir()), [])
 
     def test_tampered_oracle_reference_blocks_install_before_writing(self) -> None:
         path = self.source / "vendor/oracle-skills/LICENSE"

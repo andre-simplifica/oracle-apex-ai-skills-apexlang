@@ -53,6 +53,8 @@ Após a importação autorizada, são verificados o fluxo real, as permissões e
 
 O kit inclui as quatro skills oficiais Oracle de APEXlang 26.2, fixadas por commit e hashes, referências das novidades/APIs, procedimentos SQLcl 26.3, planos de importação sem execução automática e atualização gerenciada do projeto.
 
+A busca classifica definições e cinco exemplos 26.2, aceita termos em português e oferece leitura paginada. Cada exemplo informa dependências, adaptações e evidência de compilação da aplicação completa; isso não comprova funcionamento em produção. `validate` retorna diagnósticos com arquivo, linha, propriedade e valores permitidos. `verify-plan` confere os fontes, a configuração, o escopo, a versão local do SQLcl e a validade de 30 minutos do plano. A identidade real do destino e a autorização continuam sendo verificadas na sessão de execução. Veja o [fluxo de uso](skills/oracle-apexlang-dev/references/daily-workflow.md) e a [busca de referências](skills/oracle-apexlang-dev/references/oracle-reference-policy.md).
+
 ## Validação e limites
 
 ```bash

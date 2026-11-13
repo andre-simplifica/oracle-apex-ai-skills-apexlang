@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "apex_release": "26.2",
+  "oracle_commit": "014cdb29f12dfa6a689bbe8a80ee1c5f0bf15be1",
+  "license": "UPL-1.0",
+  "applications": {
+    "example-1": {
+      "path": "apex/apexlang/26.2/apexlang-example-applications/assets/example-1",
+      "mmd_version": "26.2.0+3479"
+    }
+  },
+  "examples": [
+    {
+      "id": "report-modal-form",
+      "title": "Interactive report with a modal form and refresh",
+      "description": "Customer report linked to a modal form, with a dialog-close refresh action.",
+      "application": "example-1",
+      "files": [
+        "pages/p00003-customers.apx",
+        "pages/p00004-customer.apx"
+      ],
+      "keywords": [
+        "interactive report",
+        "form",
+        "modal dialog",
+        "refresh",
+        "customer",
+        "relatorio",
+        "formulario",
+        "atualizacao"
+      ],
+      "dependencies": [
+        "Complete example-1 application context, shared LOVs, authorization schemes and theme templates.",
+        "OEHR_CUSTOMERS and the sample objects referenced by its LOVs; form processes include add, update and delete."
+      ],
+      "adaptation": [
+        "Adapt page/item names, keys, LOVs, links and dialog-close refresh together.",
+        "Use the consuming application authorization and tenant scope; do not copy the example authentication or enable Supporting Objects.",
+        "Compile the complete adapted application, then test persistence, denial paths and refresh in the authorized target."
+      ]
+    },
+    {
+      "id": "master-detail-grid",
+      "title": "Editable master-detail interactive grids",
+      "description": "Order and order-item grids with native row-processing processes.",
+      "application": "example-1",
+      "files": [
+        "pages/p00006-orders.apx"
+      ],
+      "keywords": [
+        "interactive grid",
+        "master detail",
+        "editable",
+        "orders",
+        "grade",
+        "mestre detalhe"
+      ],
+      "dependencies": [
+        "Complete example-1 application context, shared LOVs and theme templates.",
+        "OEHR_ORDERS and OEHR_ORDER_ITEMS, their keys and related sample objects."
+      ],
+      "adaptation": [
+        "Verify master/detail keys, columns, LOVs and row-processing authorization in the actual schema.",
+        "Compiler validation does not exercise DML, transaction behavior or concurrent editing."
+      ]
+    },
+    {
+      "id": "dashboard-charts",
+      "title": "Dashboard with native charts",
+      "description": "Multiple native chart regions, SQL series and explicit label/value mappings.",
+      "application": "example-1",
+      "files": [
+        "pages/p00002-dashboard.apx"
+      ],
+      "keywords": [
+        "dashboard",
+        "chart",
+        "pie",
+        "series",
+        "label",
+        "painel",
+        "grafico"
+      ],
+      "dependencies": [
+        "Complete example-1 application context and theme templates.",
+        "Sample OEHR queries embedded in each chart series."
+      ],
+      "adaptation": [
+        "Replace sample queries with verified, authorized project queries and preserve the required projections.",
+        "Review escaping, links, numeric formats and empty states in the consuming application."
+      ]
+    },
+    {
+      "id": "calendar",
+      "title": "Calendar from table data",
+      "description": "A native calendar with explicit display and start-date columns and additional views.",
+      "application": "example-1",
+      "files": [
+        "pages/p00007-orders-calendar.apx"
+      ],
+      "keywords": [
+        "calendar",
+        "date",
+        "table",
+        "orders",
+        "calendario",
+        "data"
+      ],
+      "dependencies": [
+        "Complete example-1 application context and theme templates.",
+        "OEHR_ORDERS.ORDER_DATE in the sample schema."
+      ],
+      "adaptation": [
+        "Map actual keys, labels and date columns; decide time-zone and all-day semantics from the project.",
+        "This example does not establish drag-and-drop persistence or event-edit behavior."
+      ]
+    },
+    {
+      "id": "filter-refresh",
+      "title": "Report filter with submitted items and refresh",
+      "description": "An interactive report submits a time-frame item and refreshes through a native Dynamic Action.",
+      "application": "example-1",
+      "files": [
+        "pages/p10034-page-views.apx"
+      ],
+      "keywords": [
+        "report",
+        "filter",
+        "refresh",
+        "dynamic action",
+        "pageItemsToSubmit",
+        "session state",
+        "filtro",
+        "atualizacao",
+        "acao dinamica"
+      ],
+      "dependencies": [
+        "Complete example-1 application context, the administration-rights scheme and theme templates.",
+        "APEX_ACTIVITY_LOG and APEX_APPLICATION_PAGES in the reference query."
+      ],
+      "adaptation": [
+        "Replace the demonstration query and bind item consistently with the actual business report.",
+        "Verify Items to Submit, session state, region refresh and server-side authorization on the real page."
+      ]
+    }
+  ]
+}

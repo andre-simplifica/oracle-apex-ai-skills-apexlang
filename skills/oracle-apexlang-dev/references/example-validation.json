@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "apex_release": "26.2",
+  "oracle_commit": "014cdb29f12dfa6a689bbe8a80ee1c5f0bf15be1",
+  "checked_at": "2026-11-13T16:59:45+00:00",
+  "applications": {
+    "example-1": {
+      "compiler_validated": true,
+      "runtime_verified": false,
+      "scope": "complete-example-application",
+      "source_tree_sha256": "8df4f8c7303695080aa289d8391508911ede1e6bbf9f7a65631ad9fa82e0b9e8",
+      "source_mmd_version": "26.2.0+3479",
+      "sqlcl_version": "26.3.1.301.1413"
+    }
+  },
+  "evidence_sha256": "4336b30edee9c3ad68e5034cbe4f3b641bb80bc5957643aa84b5d79c97a6b761"
+}

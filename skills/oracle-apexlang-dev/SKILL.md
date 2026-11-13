@@ -13,11 +13,11 @@ Read the project profile and patterns. Confirm live APEX 26.2, SQLcl 26.3+, ORDS
 
 Compare a fresh export with the baseline before editing/importing. Preserve local and App Builder changes. A selected-file import replaces that file's components; it does not merge concurrent edits inside the file.
 
-Read the relevant [Oracle inventory](references/oracle-reference-policy.md), properties, containment, theme and a real sibling page. Acquire cooperative locks for shared database objects; Working Copies do not isolate tables/packages.
+Find the relevant [Oracle definitions and compiler-validated examples](references/oracle-reference-policy.md) with ranked search; read only matching IDs and their dependencies. Check properties, containment, theme and a real sibling page. Acquire cooperative locks for shared database objects; Working Copies do not isolate tables/packages.
 
 ## Implement and prove
 
-Follow [daily workflow](references/daily-workflow.md): local diff → whole-tree compiler validation → CODESCAN triage → fresh drift check → authorized import → functional/security canaries → re-export/reconcile.
+Follow [daily workflow](references/daily-workflow.md): local diff → whole-tree compiler validation and structured diagnostics → CODESCAN triage under project rules → fresh drift check and `verify-plan` → authorized import → functional/security canaries → re-export/reconcile. Offline plan verification binds source, deployment, scope and compiler build; it does not establish live identity or authorization.
 
 Resolve authorized work through APEXlang first, documented public APIs next, and verified internal APIs under the [internal API contract](references/apex-internal-apis.md) before requesting App Builder access. Consult [public APIs](references/public-apis-26.2.md). Builder is the last resort when these routes cannot safely complete the operation; report the concrete capability, privilege or validation blocker. Never invent a component-deletion command, Working Copy merge API or internal metadata call.
 

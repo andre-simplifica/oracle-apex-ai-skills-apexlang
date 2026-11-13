@@ -4,10 +4,29 @@ The kit carries the complete Oracle APEXlang **26.2** directory from `oracle/ski
 
 ```bash
 python3 Util/apexlang/oracle_reference.py verify
-python3 Util/apexlang/oracle_reference.py search --query 'interactive-grid'
+python3 Util/apexlang/oracle_reference.py search --apex-version 26.2 \
+  --query 'relatório formulário modal' --kind example --limit 3
+python3 Util/apexlang/oracle_reference.py search --query 'pageItemsToSubmit' --kind definition
+python3 Util/apexlang/oracle_reference.py read \
+  --id example:26.2:report-modal-form --max-chars 4000
 ```
 
-In the kit itself use `scripts/oracle_reference.py`. Search reports candidate document paths; then read only those needed. Do not load all inventory files into model context.
+In the kit itself use `scripts/oracle_reference.py`. Search ranks component names, paths, properties and curated example metadata, normalizing accents, camelCase and common Portuguese terms. Results have stable IDs, scores and release evidence. Use `--kind definition|example|all`, `--limit` (1–20) and the returned `next_offset` with `--offset`. Read only needed IDs with `--max-chars` (1–12000) and `--offset`; for examples, `--file` must name one of their declared files. Search retains the JSON `matches` array, but now returns five results by default; integrations needing every match must paginate. Do not load all inventory files into model context.
+
+## Compiler-validated example catalog
+
+The kit-owned [catalog](example-catalog.json) indexes five patterns in the unmodified Oracle 26.2 example-1 application: report/modal form/refresh, editable master-detail grids, dashboard charts, calendar and a report filter with submitted items. Each entry includes source files, dependencies and adaptation requirements; `read` returns these with the source excerpt. Definitions and examples share one search, but grammar still comes from the inventory.
+
+[Compiler evidence](example-validation.json) binds the complete example application's hash and MMD to the Oracle commit and the SQLcl build that compiled it. Search and installation reject missing or mismatched evidence. These are **compiler-validated references**, not standalone pages or runtime-certified recipes. Sample tables, LOVs, authorizations, processes and theme templates require project-specific review. Do not enable Supporting Objects or copy demonstration authentication as a side effect of reusing an example. Compile the complete adapted application and test its actual business/authorization behavior in the authorized environment.
+
+When changing the catalog or Oracle pin, regenerate evidence in scratch copies without modifying the vendor tree:
+
+```bash
+python3 scripts/oracle_reference.py validate-examples --apex-version 26.2 \
+  --sqlcl <approved-launcher> --output <new-evidence.json>
+```
+
+Review the new evidence before replacing the tracked `example-validation.json`. This command only runs offline SQLcl compilation; no sample application or sample data is installed. Only reviewed releases are searchable or compilable; 24.2/26.1 and unreviewed future releases remain blocked.
 
 ## Four upstream skills
 

@@ -11,7 +11,7 @@ This is a separate project derived from [Oracle APEX AI Skills](https://github.c
 | Component | Requirement |
 | --- | --- |
 | APEX | Minimum 26.2; reviewed release 26.2 |
-| SQLcl | 26.3+; local build 26.3.0.260.1620 tested |
+| SQLcl | 26.3+; local builds 26.3.0.260.1620 and 26.3.1.301.1413 tested |
 | ORDS | 26.3+; verify the actual server |
 | Database | Supported 19c RU 19.18+ or Oracle AI Database 26ai 23.26.0+ |
 | Future APEX releases | Blocked until their inventory, APIs and migration workflow are reviewed |
@@ -24,7 +24,8 @@ A file installation can run without a database. Connected work requires verified
 - The complete Oracle-maintained APEXlang 26.2 reference set, pinned at commit `014cdb29f12dfa6a689bbe8a80ee1c5f0bf15be1`, with SHA-256 inventory and UPL license.
 - First-adoption checks for theme/subscriptions, Compatibility Mode, legacy metadata, translations, Supporting Objects, integrations and security.
 - [Legacy migration configuration review](skills/oracle-apexlang-dev/references/application-migration-review.md): Application Definition, Shared Components, PWA, themes/assets, substitutions, Component Settings and New Features, with an explicit review/automatic-adjustment scope choice when not already authorized.
-- SQLcl offline validation, explicit import plans, whole-tree drift detection and deployment identity checks. Plans never execute imports.
+- SQLcl offline validation with structured diagnostics, source-bound compiler evidence and expiring import plans verified against current files/configuration/toolchain. Plans never execute imports or certify live identity.
+- Ranked Oracle reference search with Portuguese terms, bounded reads and five 26.2 example patterns with compiler evidence, dependencies and adaptation guidance.
 - Version-specific API guidance, release-note coverage and SQLcl 26.3 practices, including CODESCAN.
 - A manifest-aware project installer/updater preserving local profiles, patterns, migrations and the previous kit.
 - Inherited PL/SQL, REST, runtime, schema baseline, pending migration and five-file database release practices.
@@ -85,8 +86,9 @@ Edit the smallest source diff using the matching Oracle inventory. Validate the 
 
 ```bash
 python3 Util/apexlang/apexlang_tools.py validate \
-  --root apex/my-app --apex-version 26.2
-python3 Util/apexlang/oracle_reference.py search --query 'interactive-grid'
+  --root apex/my-app --apex-version 26.2 --output <private-validation.json>
+python3 Util/apexlang/oracle_reference.py search --query 'interactive-grid' --limit 3
+python3 Util/apexlang/oracle_reference.py read --id example:26.2:master-detail-grid
 ```
 
 Read [daily workflow](skills/oracle-apexlang-dev/references/daily-workflow.md), [deployment/recovery](skills/oracle-apexlang-export/references/deployment-and-recovery.md) and [public APIs](skills/oracle-apexlang-dev/references/public-apis-26.2.md). Working Copies isolate application metadata, while database objects/data remain shared.
