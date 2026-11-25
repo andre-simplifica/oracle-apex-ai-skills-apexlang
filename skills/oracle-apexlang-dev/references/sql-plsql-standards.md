@@ -13,6 +13,7 @@ Use this reference when writing, reviewing, or debugging SQL and PL/SQL for Orac
 ## SQL
 
 - Use bind variables for APEX item values and user input.
+- Prefer APEX binds or typed PL/SQL parameters when SQL filters on session state. For `V()`, `SYS_CONTEXT` and actual-plan comparisons, see [session-state SQL performance](session-state-sql-performance.md).
 - Avoid concatenating SQL from user input.
 - Avoid repeatedly calling PL/SQL functions in predicates on large result sets unless there is a clear performance reason and supporting indexes/statistics.
 - Check cardinality, filters, joins, and sort order before blaming APEX rendering.
