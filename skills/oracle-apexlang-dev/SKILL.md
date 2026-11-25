@@ -34,7 +34,7 @@ Distinguish stable component Static IDs from HTML DOM IDs. Keep generated artifa
 | New features and migration risks | [26.2 changes](references/release-notes-26.2.md) |
 | Operations outside the language | [Public APIs](references/public-apis-26.2.md) |
 | App standards | [Pattern learning](references/apex-pattern-learning.md), [profile](references/project-profile.md) |
-| SQL/PLSQL | [Standards](references/sql-plsql-standards.md) |
+| SQL/PLSQL, session-state predicates, execution plans | [Standards](references/sql-plsql-standards.md), [session-state SQL performance](references/session-state-sql-performance.md) |
 | REST, debugging, jobs | [REST](references/rest-integrations.md), [debugging](references/apex-debugging.md), [jobs](references/background-jobs.md) |
 | Dynamic Content | [RETURN CLOB](references/dynamic-content-regions.md) |
 | Security and destructive actions | [Permissions](references/security-and-permissions.md), [destructive operations](references/destructive-operations.md) |
